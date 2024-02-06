@@ -1,0 +1,22 @@
+[client]
+guild_name = 
+guild_id = 
+activity = "Hello World"
+praefix = !
+
+[categorys]
+category_admin_id = 0
+
+[channels]
+bot_cmd_channel_id = 0
+
+[msgs]
+placeholder_cfg = 0
+
+[roles]
+bot_admin_role_id = 0
+
+[git]
+last_git_comment = No Git
+last_git_commit_date = No Git
+last_git_branch = No Git

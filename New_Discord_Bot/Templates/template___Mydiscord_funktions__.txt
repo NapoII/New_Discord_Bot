@@ -1,0 +1,69 @@
+"""
+test
+"""
+
+import discord
+from util.__funktion__ import *
+
+import asyncio
+import datetime
+import json
+import os
+import re
+import shutil
+import sys
+import time
+import urllib
+from configparser import ConfigParser
+from datetime import datetime
+
+import discord
+from discord import app_commands, ui
+from discord.ext import commands
+
+def discord_time_convert(time):
+    """
+    Converts a Unix timestamp to Discord time format.
+
+    Args:
+        time (int): A Unix timestamp to convert to Discord time format.
+
+
+
+    Returns:
+        - discord_time (str): A string representing the input timestamp in Discord time format.
+
+    Example Usage:
+        https://i.imgur.com/YjKkSiR.gif
+        
+        >>> timestamp = 1617123999
+        >>> discord_time = discord_time_convert(timestamp)
+        >>> print(discord_time)
+        '<t:1617123999:R>'
+            1678369942473.0
+    """
+    time = int(str(time)[:10])
+    discord_time = (f"<t:{time}:R>")
+    return discord_time
+
+
+def Discord_Activity(Text):
+    """
+    Creates a Discord Activity object with the specified text and type.
+
+    Args:
+        Text (str): The text to display as the activity.
+
+    Returns:
+        - Activity (discord.Activity): A Discord Activity object with the specified text and type.
+
+    Example Usage:
+        >>> import discord
+        >>> activity = Discord_Activity("Watching a movie")
+        >>> client = discord.Client(activity=activity)
+    """
+    #Activity = discord.Client(activity=discord.Game(name='my game'))
+    Activity = discord.Activity(name=Text, type=discord.ActivityType.watching)
+    return Activity
+
+# add your discord def´s in here -->

@@ -1,0 +1,87 @@
+"""
+Discord Bot for Server Cleanup
+
+This bot connects to a Discord server specified by the SERVER_ID constant
+and performs cleanup actions, including deleting all channels and roles in
+the server. It uses the discord.py library and the pyautogui library for
+user confirmation.
+
+Usage:
+1. Replace the token and SERVER_ID constants with the appropriate values.
+2. Run the script to connect the bot to the specified server.
+3. Upon connection, the bot will prompt the user to confirm the server.
+4. If confirmed, the bot will proceed to delete all channels and roles.
+
+Note: Use this script with caution, as it irreversibly deletes channels and roles.
+
+Dependencies:
+- discord.py: https://discordpy.readthedocs.io/
+- pyautogui: https://pyautogui.readthedocs.io/
+
+Author: Napo_II
+
+"""
+
+import discord
+from discord.ext import commands
+import pyautogui
+
+# Bot token and server ID constants
+token = ""
+SERVER_ID = ""
+
+# Initialize Discord intents
+intents = discord.Intents.default()
+intents.all()
+
+# Create a bot instance with specified command prefix and intents
+bot = commands.Bot(command_prefix='!', intents=intents)
+
+# Event triggered when the bot is ready
+@bot.event
+async def on_ready():
+    print(f'Eingeloggt als {bot.user.name} ({bot.user.id})')
+
+    # Retrieve the server with the specified ID
+    server = bot.get_guild(int(SERVER_ID))
+    print("\n")
+    print(f'Successfully connected to server {server.name}')
+    print(f"Server : {server.name}\n")
+    print("\n")
+
+    # Prompt user to confirm server connection
+    do_it = pyautogui.confirm(text=f'Server : {server.name}', title='Correct server?', buttons=['OK', 'Cancel'])
+
+    if do_it == 'OK':
+
+        if server:
+            # Delete all channels in the server
+            channel_list = [channel.id for channel in server.channels]
+            channel_list_len = len(channel_list)
+            x = -1
+            while True:
+                x = x + 1
+                if x == channel_list_len:
+                    break
+                channel = bot.get_channel(channel_list[x])
+                await bot.get_channel(channel_list[x]).delete(reason="for test restart")
+                print(f"-->> delt: {channel.name} - #{channel_list[x]}")
+
+            # Delete all roles in the server
+            roles_list = server.roles
+            roles_list_len = len(roles_list)
+            for role in roles_list:
+                try:
+                    await role.delete()
+                    print(f"-->> deleted: {role.name} - #{role.id}")
+                except Exception as e:
+                    print(f"Failed to delete role {role.name}: {e}")
+        else:
+            print(f'Server with ID {SERVER_ID} not found')
+    else:
+        pass
+
+    print(f"""Done!\nNum of delt channels: {channel_list_len}\nNum of delt Rols: {roles_list_len}""")
+
+# Run the bot with the specified token
+bot.run(token)
