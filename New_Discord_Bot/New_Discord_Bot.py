@@ -120,4 +120,4 @@ Create_File(f"pre_setup.py", discord_bot_discord_admin_cogs_folder, pre_setup_te
 
 webbrowser.open('file:///' + projekt_folder)
 clipboard.copy(projekt_folder)
-print("The project was created and the folder address was added to the clipboard..", "g")
+print("The project was created and the folder address was added to the clipboard..")
