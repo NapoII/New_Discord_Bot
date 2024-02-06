@@ -27,7 +27,8 @@ def readme_gen (name, save_path, Readme_top, readme_img_folder, config_dir, font
     repro_Git_owner = Git_owner
     discord_link = read_config(config_dir, "readme", "discord_link")
     discord_ID = read_config(config_dir, "readme", "discord_ID")
-    Description = pyautogui.prompt(text='Description von der Repro', title='README.md' , default="Coming soon...")
+    # Description = pyautogui.prompt(text='Description von der Repro', title='README.md' , default="Coming soon...")
+    Description = "Coming soon..."
     py_version = sys.version.split()[0]
 
     path_banner_img = copy_image(Readme_top, readme_img_folder)

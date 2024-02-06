@@ -19,8 +19,6 @@ import discord
 from util.__funktion__ import *
 from util.__Mydiscord_funktions__ import *
 
-config_dir = file_path + os.path.sep + "config"+ os.path.sep +"config.ini"
-
 # get the path of the current directory
 current_dir = os.path.dirname(os.path.abspath(__file__))
 bot_path = os.path.abspath(sys.argv[0])

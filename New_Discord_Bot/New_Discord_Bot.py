@@ -50,8 +50,17 @@ template_ToDo = Read_File_Out(template_ToDo_dir)
 Create_File("ToDo.md", projekt_folder, template_ToDo)
 
 #create README
-Readme_top = f"{template_folder}{os.path.sep}Readme_top.png"
 README_img_folder = Folder_gen("README_img",projekt_folder)
+discord_bot_gif = f"{template_folder}{os.path.sep}discord_bot.gif"
+discord_bot_ico = f"{template_folder}{os.path.sep}discord_bot.ico"
+Readme_top_raw_png = f"{template_folder}{os.path.sep}Readme_top.raw.png"
+Readme_top_raw_psd = f"{template_folder}{os.path.sep}Readme_top.psd"
+copy_image(discord_bot_gif, README_img_folder)
+copy_image(discord_bot_ico, README_img_folder)
+copy_image(Readme_top_raw_png, README_img_folder)
+copy_image(Readme_top_raw_psd, README_img_folder)
+
+Readme_top = f"{template_folder}{os.path.sep}Readme_top.raw.png"
 font_path = f"{template_folder}{os.path.sep}readme_header.ttf"
 readme_gen(new_discord_bot_name, projekt_folder, Readme_top, README_img_folder, config_dir, font_path)
 
@@ -60,7 +69,7 @@ discord_bot_name_folder = Folder_gen(new_discord_bot_name, projekt_folder)
 
 #create main file
 main_py_dir = f"{template_folder}{os.path.sep}template_main.py.txt"
-main_py = Read_File_Out(template_ToDo_dir)
+main_py = Read_File_Out(main_py_dir)
 main_py = change_var_in_template(main_py, "NapoII", gituser_default)
 Create_File(f"{new_discord_bot_name}.py", discord_bot_name_folder, main_py)
 
@@ -86,11 +95,11 @@ __funktions__temp = Read_File_Out(__funktions__temp_dir)
 __funktions__temp = change_var_in_template(__funktions__temp, "NapoII", gituser_default)
 Create_File(f"__funktion__.py", discord_bot_util_folder, __funktions__temp)
 
-#create __Mydiscord__ token file
+#create __Mydiscord_funktions__ token file
 __Mydiscord__temp_dir = f"{template_folder}{os.path.sep}template___Mydiscord_funktions__.txt"
 __Mydiscord_temp = Read_File_Out(__Mydiscord__temp_dir)
 __Mydiscord__temp = change_var_in_template(__Mydiscord_temp, "NapoII", gituser_default)
-Create_File(f"__Mydiscord__.py", discord_bot_util_folder, __Mydiscord__temp)
+Create_File(f"__Mydiscord_funktions__.py", discord_bot_util_folder, __Mydiscord__temp)
 
 
 #create discord_cogs Folder
@@ -107,7 +116,7 @@ Create_File(f"say.py", discord_bot_discord_admin_cogs_folder, say_temp)
 pre_setup_temp_dir = f"{template_folder}{os.path.sep}template_pre_setup.py.txt"
 pre_setup_temp_dir = Read_File_Out(pre_setup_temp_dir)
 pre_setup_temp = change_var_in_template(pre_setup_temp_dir, "NapoII", gituser_default)
-Create_File(f"pre_setup_.py", discord_bot_discord_admin_cogs_folder, pre_setup_temp)
+Create_File(f"pre_setup.py", discord_bot_discord_admin_cogs_folder, pre_setup_temp)
 
 webbrowser.open('file:///' + projekt_folder)
 clipboard.copy(projekt_folder)
