@@ -90,12 +90,12 @@ create a new repository on the command line
 git init
 git commit -m "first commit"
 git branch -M main
-git remote add origin https://github.com/NapoII/New_Discord_Bot.git
+git remote add origin https://github.com/{your_git_hub_name}/{prjekt_name}.git
 git push -u origin main
 ```
 …or push an existing repository from the command line
 ```cmd
-git remote add origin https://github.com/NapoII/New_Discord_Bot.git
+git remote add origin https://github.com/{your_git_hub_name}/{prjekt_name}.git
 git branch -M main
 git push -u origin main
 ```
