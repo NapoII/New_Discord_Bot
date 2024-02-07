@@ -42,12 +42,15 @@ Test_example/
 ┗ ToDo.md
 ```
 After [set up the config](#usage), the first start of the bot will create the required channel.
+
 ![💻-bot-cmd](/README_img/new_channel.png)
 
 And informs you what he has done and what you still have to set on the discord
+
 ![💻-bot-cmd](/README_img/first_setup_msg.png)
 
 Every time you start the bot from now on, it will show you which Git status it is currently running on and when it was started
+
 ![💻-bot-cmd](/README_img/start_status.png)
 
 In the template folder you will find useful examples of how you can programme things with [Discord.py](https://discordpy.readthedocs.io/en/stable/)
