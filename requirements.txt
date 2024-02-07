@@ -1,2 +1,6 @@
 logNow
 configparser
+discord
+pyautogui
+pandas
+PIL

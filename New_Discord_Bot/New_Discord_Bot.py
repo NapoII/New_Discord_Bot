@@ -49,17 +49,26 @@ template_ToDo_dir = f"{template_folder}{os.path.sep}template_TODO_md.txt"
 template_ToDo = Read_File_Out(template_ToDo_dir)
 Create_File("ToDo.md", projekt_folder, template_ToDo)
 
-#create README
+#create README_Img Folder
 README_img_folder = Folder_gen("README_img",projekt_folder)
+
 discord_bot_gif = f"{template_folder}{os.path.sep}discord_bot.gif"
-discord_bot_ico = f"{template_folder}{os.path.sep}discord_bot.ico"
-Readme_top_raw_png = f"{template_folder}{os.path.sep}Readme_top.raw.png"
-Readme_top_raw_psd = f"{template_folder}{os.path.sep}Readme_top.psd"
 copy_image(discord_bot_gif, README_img_folder)
+
+discord_bot_ico = f"{template_folder}{os.path.sep}discord_bot.ico"
 copy_image(discord_bot_ico, README_img_folder)
+
+Readme_top_raw_png = f"{template_folder}{os.path.sep}Readme_top.raw.png"
 copy_image(Readme_top_raw_png, README_img_folder)
+
+Readme_top_raw_psd = f"{template_folder}{os.path.sep}Readme_top.psd"
 copy_image(Readme_top_raw_psd, README_img_folder)
 
+Readme_top_kofi_gif = f"{template_folder}{os.path.sep}kofi.gif"
+copy_image(Readme_top_kofi_gif, README_img_folder)
+
+
+#create README
 Readme_top = f"{template_folder}{os.path.sep}Readme_top.raw.png"
 font_path = f"{template_folder}{os.path.sep}readme_header.ttf"
 readme_gen(new_discord_bot_name, projekt_folder, Readme_top, README_img_folder, config_dir, font_path)
@@ -100,7 +109,6 @@ __Mydiscord__temp_dir = f"{template_folder}{os.path.sep}template___Mydiscord_fun
 __Mydiscord_temp = Read_File_Out(__Mydiscord__temp_dir)
 __Mydiscord__temp = change_var_in_template(__Mydiscord_temp, "NapoII", gituser_default)
 Create_File(f"__Mydiscord_funktions__.py", discord_bot_util_folder, __Mydiscord__temp)
-
 
 #create discord_cogs Folder
 discord_bot_discord_cogs_folder = Folder_gen("discord_cogs", discord_bot_name_folder)

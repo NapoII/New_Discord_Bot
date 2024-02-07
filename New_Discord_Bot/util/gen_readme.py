@@ -109,7 +109,9 @@ python {name}.py
 
 Feel free to show your appreciation by treating me to a virtual coffee. Your support means a lot and keeps the creative coding vibes going! 🚀
 
-<a href='https://ko-fi.com/M4M0TS4ZM' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi1.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+<div style="text-align:center;">
+    <a href="https://ko-fi.com/napo_ii"><img src="/README_img/kofi.gif" alt="Buy me a coffee" width="200" height="auto"></a>
+</div>
 
 ## 📚 LICENSE <a name = "LICENSE"></a>
 
