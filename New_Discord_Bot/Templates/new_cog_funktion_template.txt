@@ -1,0 +1,57 @@
+""""
+------------------------------------------------
+COG_NAME
+------------------------------------------------
+Add description of the cog
+------------------------------------------------
+Full Doku on: https://github.com/NapoII/
+"""
+
+from util.__funktion__ import *
+from discord_cogs.points_for_member_aktive._funktion_points_for_member_aktive import *
+from util.__my_imge_path_funktions__ import *
+my_image_url = my_image_url()
+from util.__my_path_funktion__ import *
+my_file_path = my_file_path()
+
+from discord.ext import commands
+
+import os
+import sys
+
+
+guild_id = my_file_path.config.guild_id
+
+
+class exampel(commands.Cog): # <-- change class name
+    def __init__(self, bot: commands.Bot) -> None:
+        """
+        Constructor for the BotSay cog.
+
+        Parameters:
+        - bot (commands.Bot): The Discord bot instance.
+        """
+        self.bot = bot
+
+    async def exampel_start(self, bot):
+
+        # <-- write your STUFF
+
+
+
+class exampel_comand(commands.Cog):
+    def __init__(self, bot: commands.Bot) -> None:
+        self.bot = bot
+
+
+    description = "Text for the slash command"
+
+    @app_commands.command(name="say", description="Sends an embed to a destination channel")
+    async def Bot_send_modal(self, interaction: discord.Integration):
+
+    async def the_funktion(self , interaction: discord.Interaction, var: str,):
+        self.var = var
+
+
+async def setup(bot: commands.Bot):
+    await bot.add_cog(exampel(bot), guild=discord.Object(guild_id)) # <-- change class name

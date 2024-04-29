@@ -16,13 +16,16 @@ from discord.ext import commands, tasks
 from util.__funktion__ import *
 from util.__Mydiscord_funktions__ import *
 
+from util.__my_imge_path_funktions__ import *
+my_image_url = my_image_url()
 
+from util.__my_path_funktion__ import *
+my_file_path = my_file_path()
 
 #### pre Var
 py_name = os.path.basename(__file__)
 
-file_path = os.path.normpath(os.path.dirname(sys.argv[0]))
-config_dir = file_path + os.path.sep + "config"+ os.path.sep +"config.ini"
+config_dir = my_file_path.main.config_dir
 
 ################################################################################################################################
 """
@@ -37,24 +40,22 @@ Loads configuration settings from token.ini and config.ini files.
 """
 
 # Load Config_dir
-token_config_dir = os.path.normpath(os.path.join(file_path, "config", "token.ini"))
+
+# Client        
+Discord_token = my_file_path.config.Discord_token
+Application_ID = my_file_path.config.Application_ID
 
 
-# Client
-Discord_token = read_config(token_config_dir, "discord", "token")
-Application_ID = read_config(token_config_dir, "discord", "application_id")
-
-
-guild_id = read_config(config_dir, "client", "guild_id", "int")
+guild_id = my_file_path.config.guild_id
 guild = discord.Object(id=guild_id)
-praefix = read_config(config_dir, "client", "praefix")
-activity_text = read_config(config_dir, "client", "activity")
+praefix = my_file_path.config.praefix
+activity_text = my_file_path.config.activity_text
 activity = Discord_Activity(activity_text)
 
 # channel
-bot_cmd_channel_id = read_config(config_dir, "channels", "bot_cmd_channel_id", "int")
+bot_cmd_channel_id = my_file_path.config.bot_cmd_channel_id
 
-git_last_commit, git_last_date, git_branch = get_last_commit_info()
+
 
 ################################################################################################################################
 # main
@@ -71,8 +72,8 @@ class MyBot(commands.Bot):
         # List of initial extensions to load
         # add more cogs here
         self.initial_extensions = [
-            "discord_cogs.admin.say",
             "discord_cogs.admin.pre_setup",
+            "discord_cogs.admin.send_embed",
         ]
 
     async def setup_hook(self):
@@ -92,7 +93,7 @@ class MyBot(commands.Bot):
         print(f'\nLogged in as {self.user} (ID: {self.user.id})')
 
         # Retrieve bot_cmd_channel_id without type conversion
-        bot_cmd_channel_id = read_config(config_dir, "channels", "bot_cmd_channel_id", "int")
+        bot_cmd_channel_id = my_file_path.config.bot_cmd_channel_id
 
         # Check if bot_cmd_channel_id is valid
         if bot_cmd_channel_id is not None:
@@ -109,22 +110,10 @@ class MyBot(commands.Bot):
         # Create and send the bot information embed
         bot_start_embeds = []    
         
-        git_link = "https://github.com/NapoII"
-        git_embed = discord.Embed(title="Git Status", color=0xff80ff,)
-        git_embed.set_author(name="created by NapoII", url="https://github.com/NapoII")
-        git_embed.set_thumbnail(url="https://i.imgur.com/reVIEPJ.gif")
-        git_embed.add_field(name="github", value="https://github.com/NapoII", inline=False)
-        git_embed.add_field(name="Git Branch", value=git_branch, inline=True)
-        git_embed.add_field(name="Git Commit", value=git_last_commit, inline=True)
-        git_embed.add_field(name="Git Date", value=git_last_date, inline=True)
-        bot_start_embeds.append(git_embed)
+
 
         time_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         print("\n")
-        print(f"{time_str} --> {git_link}")
-        print(f"Git Branch --> {git_branch}")
-        print(f"Git Git Commit --> {git_last_commit}")
-        print(f"Git Dateit --> {git_last_date}")
 
         # Create and send the bot status embed
         start_time = discord_time_convert(time.time())
@@ -155,3 +144,16 @@ bot.run(Discord_token)
 #
 #   Discord PY Doku : https://discordpy.readthedocs.io/en/stable/
 #   Embed generator : https://embed.dan.onl/
+"""
+Discord Embed Limits
+
+If you plan on using embed responses for your bot you should know the limits of the embeds on Discord or you will get Invalid Form Body errors:
+
+    Embed title is limited to 256 characters
+    Embed description is limited to 4096 characters
+    An embed can contain a maximum of 25 fields
+    A field name/title is limited to 256 character and the value of the field is limited to 1024 characters
+    Embed footer is limited to 2048 characters
+    Embed author name is limited to 256 characters
+    The total of characters allowed in an embed is 6000
+"""

@@ -17,6 +17,7 @@ Here is the code:
 Full Doku on: https://github.com/NapoII/
 """
 # import
+import json
 import subprocess
 import os
 from configparser import ConfigParser
@@ -27,18 +28,15 @@ import requests
 from datetime import datetime
 
 from util.__Mydiscord_funktions__ import *
+from util.__my_path_funktion__ import *
+my_file_path = my_file_path()
 
 # Get the current directory of the script file
 current_dir = os.path.dirname(os.path.abspath(__file__))
 
-# Get the absolute path of the script itself
-bot_path = os.path.abspath(sys.argv[0])
-
-# Get the directory containing the script
-bot_folder = os.path.dirname(bot_path)
 
 # Construct the path to the config.ini file relative to the current directory
-config_dir = os.path.join(bot_folder, "config", "config.ini")
+config_ini_dir = my_file_path.config.config_ini_dir
 
 
 def new_path(base_path, *additional_paths):
@@ -62,72 +60,70 @@ def new_path(base_path, *additional_paths):
     return os.path.normpath(combined_path)
 
 
-def read_config(config_dir, section, option, arg=None):
+def read_config(config_ini_dir, section, option, arg=None):
     """Reads a configuration file and returns the specified value as the desired data type.
 
-Args:
-- config_dir (str): The directory where the configuration file is located.
-- section (str): The section of the configuration file where the option is located.
-- option (str): The option to retrieve from the configuration file.
-- arg (str, optional): The desired data type of the retrieved value. Can be "float", "int", or "tuple". Defaults to None.
+    Args:
+    - config_ini_dir (str): The directory where the configuration file is located.
+    - section (str): The section of the configuration file where the option is located.
+    - option (str): The option to retrieve from the configuration file.
+    - arg (str, optional): The desired data type of the retrieved value. Can be "float", "int", "tuple", or "boolean". Defaults to None.
 
-Returns:
-- If arg is not provided: the value of the specified option as a string.
-- If arg is "float": the value of the specified option as a float.
-- If arg is "int": the value of the specified option as an integer.
-- If arg is "tuple": the value of the specified option as a tuple of integers.
+    Returns:
+    - If arg is not provided: the value of the specified option as a string.
+    - If arg is "float": the value of the specified option as a float.
+    - If arg is "int": the value of the specified option as an integer.
+    - If arg is "tuple": the value of the specified option as a tuple of integers.
+    - If arg is "boolean": the value of the specified option as a boolean.
 
-Example Usage:
->>> read_config("config.ini", "database", "port")
-'5432'
+    Example Usage:
+    >>> read_config("config.ini", "database", "port")
+    '5432'
 
->>> read_config("config.ini", "database", "port", "int")
-5432
+    >>> read_config("config.ini", "database", "port", "int")
+    5432
 
->>> read_config("config.ini", "database", "credentials", "tuple")
-(123456, 'password')
-"""
+    >>> read_config("config.ini", "database", "credentials", "tuple")
+    (123456, 'password')
 
+    >>> read_config("config.ini", "database", "enabled", "bool")
+    True
+    """
+    config = ConfigParser()
+    config.read(config_ini_dir)
+    load_config = config[section][option]
+    if arg:
+        arg = arg.lower()
+    
     if arg == "float":
-        config = ConfigParser()
-        config.read(config_dir)
-        load_config = (config[section][option])
         config_float = float(load_config)
         print(f"Config loaded: [ ({option})  = ({config_float}) ] conv to float")
+        return config_float
 
-        return config_int
-    if arg == "int":
-        config = ConfigParser()
-        config.read(config_dir)
-        load_config = (config[section][option])
+    elif arg == "int":
         config_int = int(load_config)
         print(f"Config loaded: [ ({option})  = ({config_int}) ] conv to int")
-
         return config_int
     
-    if arg == "tuple":
-        config = ConfigParser()
-        config.read(config_dir)
-        load_config = (config[section][option])
+    elif arg == "tuple":
         config_tuple = tuple(map(int, load_config.split(",")))
         print(f"Config loaded: [ ({option})  = ({config_tuple}) ] conv to tuple")
-
         return config_tuple
     
+    elif arg == "boolean" or arg == "bool":
+        config_bool = load_config.lower() in ['true', '1', 'yes', 'y']
+        print(f"Config loaded: [ ({option})  = ({config_bool}) ] conv to boolean")
+        return config_bool
+    
     else:
-        config = ConfigParser()
-        config.read(config_dir)
-        load_config = (config[section][option])
-
         print(f"Config loaded: [ ({option})  = ({load_config}) ]")
-
         return load_config
 
 
-def write_config(config_dir, section, Key, option):
+def write_config(config_ini_dir, section, Key, option):
     """
 Args:
-    - config_dir (str): The directory where the configuration file is located.
+    - config_ini_dir (str): The directory where the configuration file is located.
     - section (str): The section name in the configuration file.
     - Key (str): The key to update or add in the specified section.
     - option (str): The value to assign to the specified key.
@@ -146,15 +142,15 @@ Example Usage:
     option = str(option)
     config = ConfigParser()
     # update existing value
-    config.read(config_dir)
+    config.read(config_ini_dir)
     try:
         config.add_section(section)
     except:
         pass
     config.set(section, Key, option) #Updating existing entry 
-    with open(config_dir, 'w') as configfile:
+    with open(config_ini_dir, 'w') as configfile:
         config.write(configfile)
-    print (f"\nChange settings -> {config_dir}\n[{section}]\n{Key}) = {option}\n")
+    print (f"\nChange settings -> {config_ini_dir}\n[{section}]\n{Key}) = {option}\n")
 
 
 
@@ -388,19 +384,34 @@ def get_last_commit_info(folder_path="."):
         commit_comment, commit_date, commit_branch = commit_info.strip().split(",", 2)
 
         # Save the information to a configuration file or database if needed
-        write_config(config_dir, "git", "last_git_comment", commit_comment)
-        write_config(config_dir, "git", "last_git_commit_date", commit_date)
-        write_config(config_dir, "git", "last_git_branch", commit_branch)
+        write_config(config_ini_dir, "git", "last_git_comment", commit_comment)
+        write_config(config_ini_dir, "git", "last_git_commit_date", commit_date)
+        write_config(config_ini_dir, "git", "last_git_branch", commit_branch)
 
         return commit_comment.strip(), commit_date.strip(), commit_branch.strip()
 
     except subprocess.CalledProcessError:
         # If an error occurs, fallback to the saved information in the configuration file or database
-        last_git_comment = read_config(config_dir, "git", "last_git_comment")
-        last_git_commit_date = read_config(config_dir, "git", "last_git_commit_date")
-        last_git_branch = read_config(config_dir, "git", "last_git_branch")
+        last_git_comment = read_config(config_ini_dir, "git", "last_git_comment")
+        last_git_commit_date = read_config(config_ini_dir, "git", "last_git_commit_date")
+        last_git_branch = read_config(config_ini_dir, "git", "last_git_branch")
 
         return last_git_comment, last_git_commit_date, last_git_branch
+
+
+def read_json_file(file_path):
+    """
+    Reads the contents of a JSON file and returns the resulting JSON object.
+
+    Args:
+        file_path (str): The path to the JSON file.
+
+    Returns:
+        dict: The JSON object from the file.
+    """
+    with open(file_path, 'r') as file:
+        data = json.load(file)
+    return data
 
 
     

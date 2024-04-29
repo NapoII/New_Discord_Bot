@@ -1,0 +1,327 @@
+"""
+----------------------------------------
+from util.__my_imge_path_funktions__ import *
+my_image_url = my_image_url()
+----------------------------------------
+Use: - `from util.__my_imge_path_funktions__ import *`
+`my_image_url = my_image_url()`
+----------------------------------------
+Full Doku on: https://github.com/NapoII/My_gif_Icon_collection
+"""
+
+
+class my_image_url:
+    """
+    A class containing URLs for various images.
+
+    `my_image_url = my_image_url()`
+
+    - `.rust`
+    - `.platfrom`
+    - `.rust`
+
+    """
+
+    class programm:
+        """
+        A subclass containing URLs for programm-related images.
+
+        `my_image_url.{second_class}.{var}`
+        - `my_image_url.programm.vsc`
+        """
+
+        vsc = "https://i.imgur.com/hJg3hDz.gif"
+        """
+        URL for the VSC GIF.
+        https://i.imgur.com/hJg3hDz.gif
+        """
+
+        paint = "https://i.imgur.com/Nj6Glqe.gif"
+        """
+        URL for the Paint GIF.
+        https://i.imgur.com/Nj6Glqe.gif
+        """
+
+        audacity = "https://i.imgur.com/LjSwEWE.gif"
+        """
+        URL for the Audacity GIF.
+        https://i.imgur.com/LjSwEWE.gif
+        """
+
+
+        class adobe:
+            """
+        A subclass containing URLs for adobe-related images.
+
+        `my_image_url.{second_class}.{second_ class}.{var}`
+        - `my_image_url.programm.adobe.ps`
+            """
+            
+            ps = "https://i.imgur.com/1gcRSk2.gif"
+            """
+            URL for the PS GIF.
+            https://i.imgur.com/1gcRSk2.gif
+            """
+
+            pr = "https://i.imgur.com/qKVuoao.gif"
+            """
+            URL for the PR GIF.
+            https://i.imgur.com/qKVuoao.gif
+            """
+
+            ae = "https://i.imgur.com/kw8ONgH.gif"
+            """
+            URL for the AE GIF.
+            https://i.imgur.com/kw8ONgH.gif
+            """
+
+        class code:
+            """
+            A subclass containing URLs for code-related images.
+
+            `my_image_url.{second_class}.{var}`
+            - `my_image_url.code.python`
+            """
+
+            python = "https://i.imgur.com/oN91Ygm.gif"
+            """
+            URL for the Python GIF.
+            https://i.imgur.com/oN91Ygm.gif
+            """
+
+            js = "https://i.imgur.com/XqbCeV7.gif"
+            """
+            URL for the JavaScript GIF.
+            https://i.imgur.com/XqbCeV7.gif
+            """
+
+            html = "https://i.imgur.com/1l1Wqw6.gif"
+            """
+            URL for the HTML GIF.
+            https://i.imgur.com/1l1Wqw6.gif
+            """
+
+            css = "https://i.imgur.com/VfYLERs.gif"
+            """
+            URL for the CSS GIF.
+            https://i.imgur.com/VfYLERs.gif
+            """
+
+    class gta:
+        """
+        A subclass containing URLs for gta images.
+
+        `my_image_url.{second_class}.{var}`
+        - `my_image_url.gta.blond`
+
+        """
+
+        blond = "https://cdn.discordapp.com/attachments/1152320067636318318/1180709211227815946/T71E5dZZSZeNXeDZ2EqjRQ.jpg?ex=657e6824&is=656bf324&hm=724143488b281a3cff0fb73171c011fc0f71d24989dc1d7614a56a8cea9b65c9"
+        """
+        URL for the blond image.
+        https://cdn.discordapp.com/attachments/1152320067636318318/1180709211227815946/T71E5dZZSZeNXeDZ2EqjRQ.jpg?ex=657e6824&is=656bf324&hm=724143488b281a3cff0fb73171c011fc0f71d24989dc1d7614a56a8cea9b65c9
+        """
+
+class my_image_url:
+
+    class my_logo:
+        """
+        A subclass containing URLs for my_logo-related images.
+
+        `my_image_url.{second_class}.{var}`
+        - `my_image_url.my_logo.team_logo`
+        """
+
+        logo_wheel_devmode_gif = "https://i.imgur.com/isXDsp0.gif"
+        """
+        URL for the logo_wheel_devmode_gif.
+        https://i.imgur.com/isXDsp0.gif
+        """
+
+
+    class piktogramm:
+        """
+        A subclass containing URLs for piktogramm-related images.
+
+        `my_image_url.{second_class}.{var}`
+        - `my_image_url.piktogramm.team_logo`
+        - `my_image_url.piktogramm.attention`
+        - `my_image_url.piktogramm.change`
+        - `my_image_url.piktogramm.i`
+        - `my_image_url.piktogramm.read`
+        - `my_image_url.piktogramm.text_talk`
+        """
+
+        bell = "https://i.imgur.com/NEKVhuP.gif"
+        """
+        URL for the piktogramm image with bell.
+        https://i.imgur.com/NEKVhuP.gif
+        """
+        attention = "https://i.imgur.com/y3V7YUE.gif"
+        """
+        URL for the piktogramm image with attention.
+        https://i.imgur.com/y3V7YUE.gif
+        """
+
+        change = "https://i.imgur.com/3nAxNVx.gif"
+        """
+        URL for the piktogramm image with change.
+        https://i.imgur.com/3nAxNVx.gif
+        """
+
+        i = "https://i.imgur.com/JzYHPal.gif"
+        """
+        URL for the piktogramm image with 'i'.
+        https://i.imgur.com/JzYHPal.gif
+        """
+
+        read = "https://i.imgur.com/eoDZYCY.gif"
+        """
+        URL for the piktogramm image with 'read'.
+        https://i.imgur.com/eoDZYCY.gif
+        """
+
+        text_talk = "https://i.imgur.com/qUTBvgk.gif"
+        """
+        URL for the piktogramm image with 'text_talk'.
+        https://i.imgur.com/qUTBvgk.gif
+        """
+
+        under_construction = "https://i.imgur.com/StCt76a.gif"
+        """
+        URL for the Under Construction GIF.
+        https://i.imgur.com/StCt76a.gif
+        """
+
+        server = "https://i.imgur.com/kBOzmCn.gif"
+        """
+        URL for the Server GIF.
+        https://i.imgur.com/kBOzmCn.gif
+        """
+        meeting = "https://i.imgur.com/ymZPMsS.gif"
+        """
+        URL for the meeting GIF.
+        https://i.imgur.com/ymZPMsS.gif
+        """
+        placeholder = "https://i.imgur.com/VduHPbo.gif"
+        """
+        URL for the placeholder GIF.
+        https://i.imgur.com/VduHPbo.gif
+        """
+
+        controle = "https://i.imgur.com/YaPjYt0.gif"
+        """
+        URL for the controle GIF.
+        https://i.imgur.com/YaPjYt0.gif
+        """
+
+
+
+
+    class platfrom:
+        """
+        A subclass containing URLs for platform-related images.
+
+        `my_image_url.{second_class}.{var}`
+        - `my_image_url.platfrom.discord_bot`
+        """
+
+        discord_bot = "https://i.imgur.com/reVIEPJ.gif"
+        """
+        URL for the Discord bot image.
+        https://i.imgur.com/reVIEPJ.gif
+        """
+
+        kofi = "https://i.imgur.com/4w8qeoT.gif"
+        """
+        URL for the Kofi GIF.
+        https://i.imgur.com/4w8qeoT.gif
+        """
+
+        buy_me_a_coffee = "https://i.imgur.com/m20KwPC.gif"
+        """
+        URL for the Buy Me a Coffee GIF.
+        https://i.imgur.com/m20KwPC.gif
+        """
+
+        x = "https://i.imgur.com/Mcqgkfr.gif"
+        """
+        URL for the X GIF.
+        https://i.imgur.com/Mcqgkfr.gif
+        """
+
+        twitch = "https://i.imgur.com/2IPNCS4.gif"
+        """
+        URL for the Twitch GIF.
+        https://i.imgur.com/2IPNCS4.gif
+        """
+
+        reddit = "https://i.imgur.com/pCyVcen.gif"
+        """
+        URL for the Reddit GIF.
+        https://i.imgur.com/pCyVcen.gif
+        """
+
+        instagram = "https://i.imgur.com/bqn3oX5.gif"
+        """
+        URL for the Instagram GIF.
+        https://i.imgur.com/bqn3oX5.gif
+        """
+
+        github = "https://i.imgur.com/ZllGcQi.gif"
+        """
+        URL for the GitHub GIF.
+        https://i.imgur.com/ZllGcQi.gif
+        """
+
+        git = "https://i.imgur.com/nqBWsff.gif"
+        """
+        URL for the Git GIF.
+        https://i.imgur.com/nqBWsff.gif
+        """
+
+        facebook = "https://i.imgur.com/e8JJR5w.gif"
+        """
+        URL for the Facebook GIF.
+        https://i.imgur.com/e8JJR5w.gif
+        """
+
+        discord_bot = "https://i.imgur.com/dGrb9rv.gif"
+        """
+        URL for the Discord bot GIF.
+        https://i.imgur.com/dGrb9rv.gif
+        """
+
+
+    class example:
+        """
+        A subclass containing URLs for platform-related images.
+
+        `my_image_url.{second_class}.{var}`
+        - `my_image_url.example.discord_role_rights`
+        """
+
+        discord_role_rights = "https://i.imgur.com/akCGaaY.gif"
+        """
+        URL for the discord_role_rights image.
+        https://i.imgur.com/akCGaaY.gif
+        """
+
+        battlemetrics_url = "https://i.imgur.com/QupLdrf.gif"
+        """
+        URL for the battlemetrics_url image.
+        https://i.imgur.com/QupLdrf.gif
+        """
+
+"""
+du bist jetzt mein generator ich benötige in copy code mode das hier :
+
+        logo_wheel_gif = "https://i.imgur.com/TDJsr8c.gif"
+        \"\"\"
+        URL for the CSS GIF.
+        https://i.imgur.com/TDJsr8c.gif
+        "\"\"
+
+ich gebe dir den var namen und den link und du generirst mir das in dem dem sytle
+
+"""

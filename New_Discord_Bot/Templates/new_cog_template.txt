@@ -1,0 +1,70 @@
+import os
+import sys
+import pyautogui
+import re
+
+var_name_1 = "NapoII"
+
+file_path = os.path.normpath(os.path.dirname(sys.argv[0]))
+main_path = os.path.dirname((os.path.dirname(file_path)))
+projekt_name = os.path.basename(main_path)
+cogs_folder = os.path.normpath(os.path.join(main_path, projekt_name, "discord_cogs"))
+
+new_cog_template_dir = os.path.normpath(os.path.join(file_path, "new_cog_template.txt"))
+
+cog_name = pyautogui.prompt(text='What is the name of the Discord Cog?', title='Create a new Cog' , default='')
+
+folder_in_cogs_folder = [os.path.basename(element) for element in os.listdir(cogs_folder) if os.path.isdir(os.path.join(cogs_folder, element))]
+
+folder_in_cogs_folder.insert(0, "NEW FOLDER")
+choise_folder = pyautogui.confirm(text='Select where the new cog should be created?', title='Select Folder', buttons=folder_in_cogs_folder)
+if choise_folder == "NEW FOLDER":
+    new_cog_folder_path = os.path.join(cogs_folder, cog_name)
+    folder_name = cog_name
+else:
+    new_cog_folder_path = os.path.join(cogs_folder, choise_folder ,cog_name)
+    folder_name = f"{choise_folder}.{cog_name}"
+
+
+if not os.path.exists(new_cog_folder_path):
+    x = os.makedirs(new_cog_folder_path)
+    print(f"A new cog folder {new_cog_folder_path} was successfully created.")
+    new_folder = True
+
+
+if new_folder:
+
+    # FOLDER_NAME folder_name
+    with open(new_cog_template_dir, 'r', encoding='utf-8') as f:
+        content = f.read()
+
+
+    var2 = f"from discord_cogs.{folder_name}._funktion_{cog_name} import *"
+    new_content = re.sub(re.escape("VAR2"), str(var2), content)
+    new_content = re.sub(re.escape("NapoII"), str(var_name_1), new_content)
+    new_content = re.sub(re.escape("COG_NAME"), str(cog_name), new_content)
+
+
+
+    complete_Path_Text = new_cog_folder_path + os.path.sep + f"{cog_name}.py"
+    # Create file
+    file1 = open(complete_Path_Text, "w", encoding='utf-8')
+    # toFile = input("Write what you want into the field")                   # File input def.
+    # File is filled with input
+    file1.write(f"{new_content}")
+    file1.close()
+    print(f"\nfile [{complete_Path_Text}] is created.")
+
+
+    complete_Path_Text = new_cog_folder_path + os.path.sep + f"_funktion_{cog_name}.py"
+    content = f"from discord_cogs.{folder_name}._funktion_{cog_name} import *"
+    file1 = open(complete_Path_Text, "w", encoding='utf-8')
+    # toFile = input("Write what you want into the field")                   # File input def.
+    # File is filled with input
+    file1.write(f"{content}")
+    file1.close()
+    print(f"\nfile [{complete_Path_Text}] is created.")
+
+
+# FOLDER_NAME
+# "_funktion_game_server"

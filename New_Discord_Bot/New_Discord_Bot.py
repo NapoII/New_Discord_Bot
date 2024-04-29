@@ -73,6 +73,35 @@ Readme_top = f"{template_folder}{os.path.sep}Readme_top.raw.png"
 font_path = f"{template_folder}{os.path.sep}readme_header.ttf"
 readme_gen(new_discord_bot_name, projekt_folder, Readme_top, README_img_folder, config_dir, font_path)
 
+#create Test Folder
+discord_bot_name_folder = Folder_gen("Test", projekt_folder)
+
+#add delt_all channels file
+delt_all_channel_temp_dir = f"{template_folder}{os.path.sep}template_delt_all_channel.py.txt"
+delt_all_channel_temp_dir = Read_File_Out(delt_all_channel_temp_dir)
+Create_File(f"delt_all_channel.py", discord_bot_name_folder, delt_all_channel_temp_dir)
+
+#add delt all msg from user
+delt_all_channel_temp_dir = f"{template_folder}{os.path.sep}template_delt_all__msg_from_user.py.txt"
+delt_all_channel_temp_dir = Read_File_Out(delt_all_channel_temp_dir)
+Create_File(f"template_delt_all__msg_from_user.py", discord_bot_name_folder, delt_all_channel_temp_dir)
+
+#add delt_all test_embed.py file
+test_embed_temp_dir = f"{template_folder}{os.path.sep}template_test_embed.py.txt"
+test_embed_temp_dir = Read_File_Out(test_embed_temp_dir)
+Create_File(f"test_embed.py", discord_bot_name_folder, test_embed_temp_dir)
+
+#create add_cog_test folder
+new_cog_folder = Folder_gen("create_new_Cog", discord_bot_name_folder)
+new_cog_template_temp_dir = f"{template_folder}{os.path.sep}new_cog_template.txt"
+new_cog_funktion__temp_dir = f"{template_folder}{os.path.sep}new_cog_funktion_template.txt"
+new_cog_template = Read_File_Out(new_cog_template_temp_dir)
+new_cog_funktion__temp = Read_File_Out(new_cog_funktion__temp_dir)
+new_cog_template = change_var_in_template(new_cog_template, "VARNAME_1", gituser_default)
+new_cog_funktion = change_var_in_template(new_cog_funktion__temp, "NapoII", gituser_default)
+Create_File(f"add_new_cog.py", new_cog_folder, new_cog_template)
+Create_File(f"new_cog_template.txt", new_cog_folder, new_cog_funktion)
+
 #create Main Folder
 discord_bot_name_folder = Folder_gen(new_discord_bot_name, projekt_folder)
 
@@ -88,6 +117,9 @@ discord_bot_config_folder = Folder_gen("config", discord_bot_name_folder)
 #create config file
 config_temp_dir = f"{template_folder}{os.path.sep}template_config.txt"
 config_temp = Read_File_Out(config_temp_dir)
+config_temp = change_var_in_template(config_temp, "NapoII", gituser_default)
+new_discord_bot_name_edit = new_discord_bot_name.replace(" ", "_")
+config_temp = change_var_in_template(config_temp, "xxxx", new_discord_bot_name_edit)
 Create_File(f"config.ini", discord_bot_config_folder, config_temp)
 
 #create token file
@@ -110,17 +142,27 @@ __Mydiscord_temp = Read_File_Out(__Mydiscord__temp_dir)
 __Mydiscord__temp = change_var_in_template(__Mydiscord_temp, "NapoII", gituser_default)
 Create_File(f"__Mydiscord_funktions__.py", discord_bot_util_folder, __Mydiscord__temp)
 
+#create __my_path_funktion__ token file
+__my_path_path__temp_dir = f"{template_folder}{os.path.sep}template__my_path_funktion__.txt"
+__my_path_path__temp = Read_File_Out(__my_path_path__temp_dir)
+Create_File(f"__my_path_funktion__.py", discord_bot_util_folder, __my_path_path__temp)
+
+#create __my_imge_path_funktions__ token file
+__my_imge_path__temp_dir = f"{template_folder}{os.path.sep}template___my_imge_path__.txt"
+__my_imge_path__temp = Read_File_Out(__my_imge_path__temp_dir)
+Create_File(f"__my_imge_path_funktions__.py", discord_bot_util_folder, __my_imge_path__temp)
+
 #create discord_cogs Folder
 discord_bot_discord_cogs_folder = Folder_gen("discord_cogs", discord_bot_name_folder)
 discord_bot_discord_admin_cogs_folder = Folder_gen("admin", discord_bot_discord_cogs_folder)
 
-#create  say file
-say_temp_dir = f"{template_folder}{os.path.sep}template_say.txt"
-say_temp_dir = Read_File_Out(say_temp_dir)
-say_temp = change_var_in_template(say_temp_dir, "NapoII", gituser_default)
-Create_File(f"say.py", discord_bot_discord_admin_cogs_folder, say_temp)
+#create say file template_send_embed.txt
+send_embed_temp_dir = f"{template_folder}{os.path.sep}template_send_embed.txt"
+send_embed_temp_dir = Read_File_Out(send_embed_temp_dir)
+send_embed_temp = change_var_in_template(send_embed_temp_dir, "NapoII", gituser_default)
+Create_File(f"send_embed.py", discord_bot_discord_admin_cogs_folder, send_embed_temp)
 
-#create  pre_setup file
+#create pre_setup file
 pre_setup_temp_dir = f"{template_folder}{os.path.sep}template_pre_setup.py.txt"
 pre_setup_temp_dir = Read_File_Out(pre_setup_temp_dir)
 pre_setup_temp = change_var_in_template(pre_setup_temp_dir, "NapoII", gituser_default)

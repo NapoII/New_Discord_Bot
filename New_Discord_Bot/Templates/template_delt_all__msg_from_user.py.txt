@@ -1,0 +1,39 @@
+import discord
+
+# Token des Bots
+TOKEN = 'token'
+
+# ID des Benutzers, dessen Nachrichten gelöscht werden sollen
+TARGET_USER_ID = [int(line.strip()) for line in open(r'path to delt txt with user ids', 'r')]
+
+
+import discord
+from discord.ext import commands
+
+intents = discord.Intents.default()
+intents.messages = True
+
+client = commands.Bot(command_prefix='!', intents=intents)
+
+@client.event
+async def on_ready():
+    print('Bot is ready.')
+
+    for user_id in TARGET_USER_ID:
+        guild = client.get_guild(guild id)  # Ersetze GUILD_ID durch die ID deines Servers
+
+        if guild is not None:
+            for channel in guild.text_channels:
+                deleted = await channel.purge(check=lambda message: message.author.id == user_id)
+                print(f'Deleted {len(deleted)} messages from {user_id} in {channel.name}.')
+
+        user = guild.get_member(user_id)
+        if user is not None:
+            await guild.ban(user, reason="Spam und Regelverstoß")
+            print(f'{user.name} has been banned.')
+        
+        print("DONE!")
+    print("DONE!")   
+# Füge deinen Bot-Token hier ein
+client.run(TOKEN)
+

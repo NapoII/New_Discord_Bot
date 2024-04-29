@@ -1,5 +1,5 @@
 """
-test
+from util.__Mydiscord_funktions__ import *
 """
 
 import discord
@@ -21,30 +21,35 @@ import discord
 from discord import app_commands, ui
 from discord.ext import commands
 
-def discord_time_convert(time):
+
+def delt_str_time(sec_to_delta):
     """
-    Converts a Unix timestamp to Discord time format.
+    ~~This mgs gets delt in 60 sec~~"
 
-    Args:
-        time (int): A Unix timestamp to convert to Discord time format.
+    """
+    current_unix_time = int(time.time())
+    delt_unix_time = discord_time_convert(current_unix_time + sec_to_delta)
+    delt_msg_str = f"~~This mgs gets delt {delt_unix_time}~~"
+    return delt_msg_str
 
 
-
-    Returns:
-        - discord_time (str): A string representing the input timestamp in Discord time format.
-
-    Example Usage:
-        https://i.imgur.com/YjKkSiR.gif
-        
-        >>> timestamp = 1617123999
-        >>> discord_time = discord_time_convert(timestamp)
-        >>> print(discord_time)
-        '<t:1617123999:R>'
-            1678369942473.0
+def discord_time_convert(time, type=False):
+    """
+    `<t:1708536408:t>` = `t` = 18:26 
+    `<t:1708536421:T>` = `T` = 18:27:01 
+    `<t:1708536431:d>` = `d` = 21/02/2024 
+    `<t:1708536440:D>` = `D` = 21 February 2024 
+    `<t:1708536455:f>` = `f` = 21 February 2024 18:27 
+    `<t:1708536477:R>` = `R` = a minute ago
     """
     time = int(str(time)[:10])
-    discord_time = (f"<t:{time}:R>")
-    return discord_time
+
+    if type:
+        discord_time = (f"<t:{time}:{type}>")
+        return discord_time
+    else:
+        discord_time = (f"<t:{time}:R>")
+        return discord_time
 
 
 def Discord_Activity(Text):
